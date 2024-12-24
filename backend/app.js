@@ -19,13 +19,13 @@ app.use(cors())
 
 app.use(authRoutes)
 
-// Serve static files from the build directory
-app.use(express.static(path.join(__dirname, "build")));
+// // Serve static files from the build directory
+// app.use(express.static(path.join(__dirname, "build")));
 
-// Handle all other routes by returning the index.html (for React Router to take over)
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
+// // Handle all other routes by returning the index.html (for React Router to take over)
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 
 
 // MongoDB connection
