@@ -23,7 +23,7 @@ app.use(authRoutes)
 app.use(express.static(path.join(__dirname, "build")));
 
 // // Handle all other routes by returning the index.html (for React Router to take over)
-app.get("*", (req, res) => {
+app.post("*", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
