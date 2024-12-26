@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Form, Button, Container, Alert } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 const ForgetPasswordPage = () => {
     const [email, setEmail] = useState('');
@@ -29,31 +30,32 @@ const ForgetPasswordPage = () => {
     };
 
     return (
-        <Container>
-            <h2 className="my-4">Reset Password</h2>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="email">
-                    <Form.Label>Enter your email address</Form.Label>
-                    <Form.Control 
-                        type="email" 
-                        placeholder="Enter email" 
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)} 
-                        required
-                    />
-                </Form.Group>
-                <Button variant="primary" type="submit" disabled={loading}>
-                    {loading ? 'Sending...' : 'Request Password Reset'}
-                </Button>
-            </Form>
+        
+  <div>
+     
+     <div className="card p-4" style={{marginLeft:"2rem"}}>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-3" style={{display:"flex",flexDirection:"column"}}>
+          <label for="email" className="form-label">Email address</label>
+          <input 
+          type="email" 
+          className="form-control" 
+          style={{padding:"4%"}} 
+          id="email" 
+          placeholder="Enter your email" 
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+           required/>
+        </div>
+        <button type="submit" className="btn btn-primary w-100" disabled={loading}>  {loading ? 'Sending...' : 'SEND RESET LINK'}</button>
+      </form>
+              <div className="alert alert-dark" role="alert" style={{padding:"6px",marginTop:"14px",display:message?'block':'none',color:error?'red':"green"}}>
+        {message}      
+    </div>
+    </div>
+  </div>
 
-            {message && (
-                <Alert variant={error ? 'danger' : 'success'} className="mt-3">
-                    {message}
-                </Alert>
-            )}
-        </Container>
-    );
+    )
 };
 
 export default ForgetPasswordPage;
