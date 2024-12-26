@@ -16,7 +16,7 @@ async function sendResetEmail(email, randomString) {
     from: process.env.GMAIL_USER,
     to: email,
     subject: 'Password Reset Link',
-    text: `Click on the following link to reset your password: http://localhost:5174`
+    text: `Click on the following link to reset your password: http://localhost:5174/${randomString}`
   };
 
   await transporter.sendMail(mailOptions);
