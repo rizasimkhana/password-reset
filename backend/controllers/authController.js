@@ -16,7 +16,7 @@ async function sendResetEmail(email, randomString) {
     from: process.env.GMAIL_USER,
     to: email,
     subject: 'Password Reset Link',
-    text: `Click on the following link to reset your password: https://password-reset678.netlify.app/`
+    text: `Click on the following link to reset your password: https://localhost:5174`
   };
 
   await transporter.sendMail(mailOptions);
