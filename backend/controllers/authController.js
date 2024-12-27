@@ -47,6 +47,30 @@ async function register(req,res){
   }
 }
 
+
+async function login(req,res){
+  const { email, password } = req.body;
+
+  try {
+    // Check if the user exists
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).send('user not found ! register');
+    }
+
+    // Compare the entered password with the hashed password
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+      return res.status(400).send('Incorrect password!');
+    }
+
+    res.status(200).send('Login successful!');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+}
+
 async function requestresetpassword(req,res){
     const { email } = req.body;
 
@@ -97,5 +121,5 @@ async function resetPassword(req,res){
 
 module.exports={
     requestresetpassword,
-    resetPassword,register
+    resetPassword,register,login
 }
