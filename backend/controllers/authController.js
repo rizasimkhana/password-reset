@@ -22,7 +22,7 @@ async function sendResetEmail(email, randomString) {
   await transporter.sendMail(mailOptions);
 }
 async function register(req,res){
-  const {email,password,confrimPassword}=req.body;
+  var {email,password,confrimPassword}=req.body;
   var user = await User.find({ password , email });
   confrimPassword = user.password;
   if (password !== confrimPassword) {
