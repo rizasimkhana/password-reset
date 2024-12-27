@@ -24,7 +24,7 @@ async function sendResetEmail(email, randomString) {
 async function register(req,res){
   var {email,password,confrimPassword}=req.body;
   var user = await User.find({ password , email });
-  confrimPassword = user.password;
+  confrimPassword = password;
   if (password !== confrimPassword) {
     return res.status(400).send('Passwords do not match!');
   }
