@@ -31,7 +31,7 @@ async function register(req,res){
   if (user[email]) {
     return res.status(400).send('email already exists!');
   }
-
+  user.confrimPassword = undefined; 
   await user.save();
 
   res.status(200).send("user registered successfully");
