@@ -22,18 +22,29 @@ async function sendResetEmail(email, randomString) {
   await transporter.sendMail(mailOptions);
 }
 async function register(req,res){
-  var {email,password,confrimPassword}=req.body;
-  var user = await User.find({ password , email });
-  confrimPassword = password;
-  if (password !== confrimPassword) {
+  const { email, password, confirmPassword } = req.body;
+
+  // Check if passwords match
+  if (password !== confirmPassword) {
     return res.status(400).send('Passwords do not match!');
   }
-  if (user[email]) {
-    return res.status(400).send('email already exists!');
-  }
-  user.confrimPassword = undefined; 
 
-  res.status(200).send("user registered successfully");
+  // Check if username already exists
+  const existingEmail = await User.findOne({ email });
+  if (existingEmail) {
+    return res.status(400).send('Email already exists!');
+  }
+
+  try {
+    // Create a new user
+    const newUser = new User({ email, password });
+    await newUser.save();
+
+    res.status(201).send('User registered successfully!');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
 }
 
 async function requestresetpassword(req,res){
