@@ -21,6 +21,21 @@ async function sendResetEmail(email, randomString) {
 
   await transporter.sendMail(mailOptions);
 }
+async function register(req,res){
+  const {email,password,confrimPassword}=req.body;
+  var user = await User.findMany({ password , email });
+  confrimPassword = user.password;
+  if (password !== confrimPassword) {
+    return res.status(400).send('Passwords do not match!');
+  }
+  if (user[email]) {
+    return res.status(400).send('email already exists!');
+  }
+
+  await user.save();
+
+  res.status(200).send("user registered successfully");
+}
 
 async function requestresetpassword(req,res){
     const { email } = req.body;
@@ -72,5 +87,5 @@ async function resetPassword(req,res){
 
 module.exports={
     requestresetpassword,
-    resetPassword
+    resetPassword,register
 }
