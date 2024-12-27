@@ -59,7 +59,7 @@ async function login(req,res){
     }
 
     // Compare the entered password with the hashed password
-    const isMatch = user.password;
+    const isMatch = await User.findOne({ password });
     if (!isMatch) {
       return res.status(400).send('Incorrect password!');
     }
