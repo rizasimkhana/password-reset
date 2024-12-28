@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
-
+import { useNavigate } from 'react-router-dom';
 
 const ForgetPasswordPage = () => {
     const [email, setEmail] = useState('');
@@ -9,6 +9,7 @@ const ForgetPasswordPage = () => {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
 
+          const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -20,6 +21,8 @@ const ForgetPasswordPage = () => {
             
             if (response.status === 200) {
                 setMessage('A reset link has been sent to your email!');
+                navigate('/')
+
             }
         } catch (err) {
             setError(true);
