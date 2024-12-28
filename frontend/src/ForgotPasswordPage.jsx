@@ -21,7 +21,9 @@ const ForgetPasswordPage = () => {
             
             if (response.status === 200) {
                 setMessage('A reset link has been sent to your email!');
-                navigate('/')
+               setTimeout(() => {
+                navigate("/")
+               }, 3000);
 
             }
         } catch (err) {
