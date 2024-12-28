@@ -89,7 +89,7 @@ function Register() {
                                             </div>
                                         </div>
                                        
-                                        <button type="submit" data-mdb-button-init data-mdb-ripple-init className="btn  btn-lg mb-1 " style={{backgroundColor:"rgb(229,9,0)"}}>register</button>
+                                        <button type="submit" data-mdb-button-init data-mdb-ripple-init className="btn  btn-lg mb-1 " style={{backgroundColor:"rgb(229,9,0)"}} disabled={loading}>{loading?'....':'REGISTER'}</button>
                                        
                                     </form>
                                     <a href="/">already Registered user?</a>

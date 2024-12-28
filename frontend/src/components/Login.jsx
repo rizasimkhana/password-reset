@@ -68,7 +68,7 @@ function Login(){
                                     </div>
                                       
                                        
-                                        <button type="submit" data-mdb-button-init data-mdb-ripple-init className="btn  btn-lg mb-1 " style={{backgroundColor:"rgb(229,9,0)",verticalAlign:"middle"}}>LOGIN</button>
+                                        <button type="submit" data-mdb-button-init data-mdb-ripple-init className="btn  btn-lg mb-1 " style={{backgroundColor:"rgb(229,9,0)",verticalAlign:"middle"}} disabled={loading}>{loading?'....':"LOGIN"}</button>
                                         <a href="/forgot-password" className='float-end'>Forgot Password?</a>
                                     </form>
                                     <a href="/register">new user?register</a>
